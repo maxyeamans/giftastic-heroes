@@ -62,7 +62,10 @@ $(document).ready(function () {
                 gifDiv = $("<div>").addClass("gif-div float-left m-2");
                 // Build the gif image                
                 gifImage = $("<img>");
-                gifImage.attr("src", gifObject.images.fixed_height.url);
+                gifImage.attr("src", gifObject.images.fixed_height_still.url);
+                gifImage.attr("gif-active-src", gifObject.images.fixed_height.url);
+                gifImage.attr("gif-still-src", gifObject.images.fixed_height_still.url);
+                gifImage.attr("gif-state", "still");
                 gifImage.addClass("gif-image m-1");
                 // Add the gif rating
                 gifRating = $("<p>").text("Rating: " + gifObject.rating).addClass("mb-1");
@@ -73,6 +76,20 @@ $(document).ready(function () {
                 $("#gif-section").append(gifDiv);
             })
         });
+    });
+
+    // Function to animate and un...animate gifs
+    $("#gif-section").on("click", ".gif-image", function() {
+        var state = $(this).attr("gif-state");
+
+        if( state == "still") {
+            $(this).attr("src", $(this).attr("gif-active-src") );
+            $(this).attr("gif-state", "active");
+        }
+        else if( state == "active") {
+            $(this).attr("src", $(this).attr("gif-still-src") );
+            $(this).attr("gif-state", "still");
+        }
     });
 
 })
