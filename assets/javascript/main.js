@@ -38,7 +38,7 @@ $(document).ready(function () {
         }
     });
 
-    $(".gif-button").on("click", function (event) {
+    $("#gif-buttons").on("click", ".gif-button", function (event) {
         var gifTopic = $(this).val();
         console.log(gifTopic);
         var apiKey = "HK4AFi8HSTsbwtKlRKpzj9B894V3KCHJ";
